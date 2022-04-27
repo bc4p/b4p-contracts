@@ -1,0 +1,12 @@
+__pycache__
+.env
+.history
+.hypothesis/
+build/
+reports/
+.deps/
+/python_env/
+.vscode/
+artifacts/
+
+

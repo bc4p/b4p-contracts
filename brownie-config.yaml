@@ -1,0 +1,45 @@
+dependencies:
+  - smartcontractkit/chainlink-brownie-contracts@0.4.0
+  - OpenZeppelin/openzeppelin-contracts@4.5.0
+compiler:
+  solc:
+    remappings:
+      - '@chainlink=smartcontractkit/chainlink-brownie-contracts@0.4.0'
+      - '@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0'
+    
+dotenv: .env
+
+networks:
+    default: mainnet-fork
+    rinkeby:
+     eth_usd_price_feed: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e"
+     verify: False
+    development:
+      verify: False
+    polygon-test:
+      eth_usd_price_feed: "0x0715A7794a1dc8e42615F059dD6e406A6594651A"
+      link: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
+      usdc: "0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747"
+      verify: False
+    polygon-main:
+      eth_usd_price_feed: "0xF9680D99D6C9589e2a93a78A04A279e509205945"
+      verify: False
+    eth-mainnet-fork:
+      eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+      eurs: "0xdB25f211AB05b1c97D595516F45794528a807ad8"
+      verify: False
+    polygon-mainnet-fork:
+      eth_usd_price_feed: "0xF9680D99D6C9589e2a93a78A04A279e509205945"
+      link: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
+      usdc: "0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747"
+      eurs: "0xE111178A87A3BFf0c8d18DECBa5798827539Ae99"
+      verify: False
+    mainnet-fork:
+      eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+      eurs: "0xdB25f211AB05b1c97D595516F45794528a807ad8"
+      verify: False
+
+    
+
+wallets:
+  faucet: ${PRIVATE_KEY}
