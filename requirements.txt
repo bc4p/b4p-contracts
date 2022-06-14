@@ -1,4 +1,4 @@
-brownie
+eth-brownie
 pytest
 web3
 websockets
