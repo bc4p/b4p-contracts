@@ -8,7 +8,7 @@ from brownie import (
     chain
 )
 
-FORKED_LOCAL_ENVIRONMENTS = ["mainnet-fork", "eth-mainnet-fork", "polygon-mainnet-fork"]
+FORKED_LOCAL_ENVIRONMENTS = ["bc4p-mainnet", "eth-mainnet-fork", ]
 LOCAL_BLOCKCHAIN_ENVIRONMENTS = ["development", "ganache-local"]
 
 
