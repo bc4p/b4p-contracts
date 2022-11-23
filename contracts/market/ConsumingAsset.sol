@@ -12,14 +12,14 @@ contract ConsumingAsset is Asset{
         market1.receiveBid(bid);
     }
 
-    function createBid(uint price, uint amount) public {
+    function createBid(uint price, uint amount, string memory id) public {
         IERC20 stableCoin = IERC20(market1.stableCoin());
         address[] memory markets = registry.getMarkets();
         for(uint i=0; i<markets.length; i++){
-            stableCoin.approve(markets[i], 10000000000000000000);
+            stableCoin.approve(markets[i], 1000000000000000000000);
         }
         ///stableCoin.approve(market1.getAddress(), 10000000000000000000);
-        OfferOrBid memory bid = OfferOrBid(block.timestamp, price, amount, address(this),address(this),true);
+        OfferOrBid memory bid = OfferOrBid(block.timestamp, price, amount, address(this),address(this),true, id);
         forward(bid, 0);
     }
    

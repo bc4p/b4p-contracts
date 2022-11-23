@@ -22,6 +22,7 @@ struct OfferOrBid {
         address _address;
         address last_market;
         bool isBid;
+        string id;
 }
 
 constructor(address market1Address, address market2Address, address marketRegistryAddress){

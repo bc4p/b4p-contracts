@@ -29,8 +29,8 @@ contract Market is Node, KeeperCompatible{
     mapping(uint => OfferOrBid) public bids;  
 
     //track lenght of offers and bids
-    Counters.Counter offersLength;
-    Counters.Counter bidsLength;
+    Counters.Counter public offersLength;
+    Counters.Counter public bidsLength;
     
     //deploy with a stablecoin (e.g Thether USD)
     //the price in bid/offers will refer to this stablecoin
@@ -49,6 +49,24 @@ contract Market is Node, KeeperCompatible{
         lastTimeStamp = block.timestamp;
         counter = 0;
         registry.addMarket(address(this));
+    }
+
+    function getOfferById(string memory offerId, OfferOrBid memory offer) internal returns (OfferOrBid memory){
+       for(uint i=0; i<offersLength.current(); i++){
+            OfferOrBid memory offer = offers[i];
+            if (keccak256(abi.encodePacked(offer.id)) == keccak256(abi.encodePacked(offerId))) {
+                return offer;
+            }
+       }
+    }
+
+    function getBidById(string memory bidId) internal returns (OfferOrBid memory){
+       for(uint i=0; i<bidsLength.current(); i++){
+            OfferOrBid memory bid = bids[i];
+            if (keccak256(abi.encodePacked(bid.id)) == keccak256(abi.encodePacked(bidId))) {
+                return bid;
+            }
+       }
     }
 
     // energy providers will call this function sepcifying the price and a 
@@ -108,10 +126,10 @@ contract Market is Node, KeeperCompatible{
 
 
     function _match(OfferOrBid memory bid, OfferOrBid memory offer) internal returns(bool) {
-        if(bid.price >= offer.price && bid.amount<= offer.amount){
+        if(bid.price >= offer.price && bid.amount <= offer.amount){
             emit Match(bid.price, bid.amount, block.timestamp, bid._address, offer._address);
             //energyToken.approve(bid._address, bid.amount);
-            bool transferred = stableCoin.transferFrom(bid._address, offer._address, (bid.amount*bid.price));
+            bool transferred = stableCoin.transferFrom(bid._address, offer._address, ((bid.amount*bid.price)/(10**6)));
             require(transferred, "stablecoin transfer failed");
             energyToken.transferFrom(offer._address, bid._address, bid.amount);
             offer.amount = offer.amount - bid.amount;
@@ -210,6 +228,13 @@ contract Market is Node, KeeperCompatible{
         }
 
     }
+
+    function acceptBid(string memory bidId, OfferOrBid memory offer) external {
+        OfferOrBid memory bid = getBidById(bidId);
+        _match(bid, offer);
+    }
+
+  
 
     function checkUpkeep(bytes calldata /* checkData */) external view override returns (bool upkeepNeeded, bytes memory /* performData */) {
             upkeepNeeded = (block.timestamp - lastTimeStamp) > interval;

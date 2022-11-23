@@ -26,7 +26,9 @@ networks:
       verify: False
     eth-mainnet-fork:
       eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
-      eurs: "0xdB25f211AB05b1c97D595516F45794528a807ad8"
+      eurs: 
+        address: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c"
+        faucet: "0xba3436fd341f2c8a928452db3c5a3670d1d5cc73"
       verify: False
     polygon-mainnet-fork:
       eth_usd_price_feed: "0xF9680D99D6C9589e2a93a78A04A279e509205945"
@@ -36,7 +38,12 @@ networks:
       verify: False
     mainnet-fork:
       eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
-      eurs: "0xdB25f211AB05b1c97D595516F45794528a807ad8"
+      eurs: 
+        address: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c"
+        faucet: "0xba3436fd341f2c8a928452db3c5a3670d1d5cc73"
+      # eurs: 
+      #   address: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c"
+      #   faucet: "0x55FE002aefF02F77364de339a1292923A15844B8"
       verify: False
     bc4p-mainnet:
       eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
