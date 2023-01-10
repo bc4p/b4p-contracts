@@ -53,7 +53,7 @@ contract EnergyToken is Context, ERC165, IERC1155, IERC1155MetadataURI, Ownable 
 /**
 * @notice This function is used to mint a batch of energy tokens
 * @param _amount the amount of total tokes that will be minted
-* @dev for now i use a enregy to tokenID mapping but it could make sense to have the energy amount == tokenID such that the energy that it represents can be viewed in the envent emitted.
+* @dev for now it uses a enregy to tokenID mapping but it could make sense to have the energy amount == tokenID such that the energy that it represents can be viewed in the envent emitted.
 */
 
     
@@ -108,9 +108,24 @@ contract EnergyToken is Context, ERC165, IERC1155, IERC1155MetadataURI, Ownable 
      *
      * - `account` cannot be the zero address.
      */
-    function balanceOf(address account, uint256 id) public view virtual override returns (uint256) {
+    function balanceOf(address account, uint id) public view virtual override returns (uint256) {
         require(account != address(0), "ERC1155: balance query for the zero address");
         return _balances[id][account];
+    }
+
+    function balanceFromProducer(address account, address producer) public view returns (uint256) {
+        require(account != address(0), "ERC1155: balance query for the zero address");
+        uint _id = addressToId[producer];
+        return balanceOf(account, _id);
+    }
+
+    function totalBalance(address account) public view returns (uint256) {
+        require(account != address(0), "ERC1155: balance query for the zero address");
+        uint tot_balance = 0;
+        for(uint i = 0; i<counter.current(); i++){
+            tot_balance += _balances[i][account];
+        }
+        return tot_balance;
     }
 
     /**
