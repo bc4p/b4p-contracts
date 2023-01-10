@@ -7,6 +7,7 @@ import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./Node.sol";
 import "@chainlink/contracts/src/v0.8/KeeperCompatible.sol";
 import "./MarketRegistry.sol";
+import '../mocks/EursMock.sol';
 
 contract Market is Node, KeeperCompatible{
     using Counters for Counters.Counter;
@@ -20,7 +21,7 @@ contract Market is Node, KeeperCompatible{
     uint public counter;
 
     EnergyToken public energyToken;
-    IERC20 public stableCoin;
+    EursMock public stableCoin;
     //AggregatorV3Interface priceFeed;
 
     //offers in the market
@@ -43,7 +44,7 @@ contract Market is Node, KeeperCompatible{
      Node(market1,market2,marketRegistryAddress)
      {
         fee = _fee;
-        stableCoin = IERC20(stableCoinAddress);
+        stableCoin = EursMock(stableCoinAddress);
         energyToken = EnergyToken(energyTokenAddress);
         interval = 15;
         lastTimeStamp = block.timestamp;
@@ -129,7 +130,7 @@ contract Market is Node, KeeperCompatible{
         if(bid.price >= offer.price && bid.amount <= offer.amount){
             emit Match(bid.price, bid.amount, block.timestamp, bid._address, offer._address);
             //energyToken.approve(bid._address, bid.amount);
-            bool transferred = stableCoin.transferFrom(bid._address, offer._address, ((bid.amount*bid.price)/(10**6)));
+            bool transferred = stableCoin.transferFrom(bid._address, offer._address, bid.price);
             require(transferred, "stablecoin transfer failed");
             energyToken.transferFrom(offer._address, bid._address, bid.amount);
             offer.amount = offer.amount - bid.amount;

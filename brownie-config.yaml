@@ -46,10 +46,16 @@ networks:
       #   faucet: "0x55FE002aefF02F77364de339a1292923A15844B8"
       verify: False
     bc4p-mainnet:
-      eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
       chainid: "123321"
       host: "https://bc4p.nowum.fh-aachen.de/blockchain"
-      eurs: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+      faucet: 
+        address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
+        faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
+      eurs:
+        address: "0x2d743bfa1E31fd0eB4340669010db4139d116F2e"
+      energy:
+        address: "0x1452a39495f76928C19628B5087A0dCC8FfA3F55"
+
       explorer: "https://bc4p.nowum.fh-aachen.de/explorer/api"
       verify: False
 

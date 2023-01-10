@@ -481,7 +481,10 @@ contract MockEursToken is AbstractToken {
         (addressFlags [_from] | addressFlags [_to]) & ZERO_FEE_FLAG == ZERO_FEE_FLAG ?
           0 :
           calculateFee (_value);
-
+      require(!(_value <= allowances [_from][msg.sender] &&
+          fee <= safeSub (allowances [_from][msg.sender], _value) &&
+          _value <= accounts [_from] &&
+          fee <= safeSub (accounts [_from], _value)), "not enough balance");
       if (_value <= allowances [_from][msg.sender] &&
           fee <= safeSub (allowances [_from][msg.sender], _value) &&
           _value <= accounts [_from] &&
