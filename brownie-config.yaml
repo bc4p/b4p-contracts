@@ -52,9 +52,11 @@ networks:
         address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
         faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
       eurs:
-        address: "0x2d743bfa1E31fd0eB4340669010db4139d116F2e"
+        address: "0xCEB386Cc0C703de5e93F22Db7Ad65f71d0458dE0"
       energy:
-        address: "0x1452a39495f76928C19628B5087A0dCC8FfA3F55"
+        address: "0xFaAc09e59D4e1f67e55b88C91c5fE6598E94EC2B"
+      soulbound:
+        address: "0x00b5cC8Df40b2716098021F23499a1E35f6345Ef"
 
       explorer: "https://bc4p.nowum.fh-aachen.de/explorer/api"
       verify: False
