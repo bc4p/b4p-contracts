@@ -3,9 +3,10 @@ pragma solidity ^0.8.7;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract SoulBoundToken is ERC721, Ownable {
+contract SoulBoundToken is ERC721Enumerable, Ownable {
     mapping (address => bool) public owners;
     mapping (address => string) public image;
     mapping (address => bool) public requestStatus;
@@ -48,7 +49,7 @@ contract SoulBoundToken is ERC721, Ownable {
         return(_response);
     }
 
-    function updateMetadata(uint256 tokenId, string memory _image) private {
+    function updateMetadata(uint256 tokenId, string memory _image) public {
         require(ownerOf(tokenId) == msg.sender, "Only the token owner can change metadata");
         image[msg.sender] = _image;
     }
@@ -58,7 +59,8 @@ contract SoulBoundToken is ERC721, Ownable {
         _burn(tokenId);
     }
 
-    function _beforeTokenTransfer(address from, address to, uint256) pure override internal {
+    function _beforeTokenTransfer(address from, address to, uint256 tokenId) virtual override internal {
+        super._beforeTokenTransfer(from , to, tokenId);
         require(from == address(0) || to == address(0), "This a Soulbound token. It cannot be transferred. It can only be burned by the token owner.");
     }
 

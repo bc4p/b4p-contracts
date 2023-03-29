@@ -16,6 +16,9 @@ networks:
      verify: False
     development:
       verify: False
+      faucet: 
+          address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
+          faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
     polygon-test:
       eth_usd_price_feed: "0x0715A7794a1dc8e42615F059dD6e406A6594651A"
       link: "0x326C977E6efc84E512bB9C30f76E30c160eD06FB"
@@ -39,8 +42,17 @@ networks:
     mainnet-fork:
       eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
       eurs: 
-        address: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c"
+        address: "0xB6BE79d59f08dBC7Ffd7255D73ffc577b2dC9ebE"
         faucet: "0xba3436fd341f2c8a928452db3c5a3670d1d5cc73"
+      faucet: 
+        address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
+        faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
+      eurs:
+        address: "0xCEB386Cc0C703de5e93F22Db7Ad65f71d0458dE0"
+      energy:
+        address: "0x3601e2064Fc191Cf6EBF31F4814074F60630fF6E"
+      soulbound:
+        address: "0x87174f8013086BB5c1d8a9aFc18c00D3eB53c8f4"
       # eurs: 
       #   address: "0x1aBaEA1f7C830bD89Acc67eC4af516284b1bC33c"
       #   faucet: "0x55FE002aefF02F77364de339a1292923A15844B8"
@@ -56,10 +68,23 @@ networks:
       energy:
         address: "0xFaAc09e59D4e1f67e55b88C91c5fE6598E94EC2B"
       soulbound:
-        address: "0x00b5cC8Df40b2716098021F23499a1E35f6345Ef"
+        address: "0x9934a19e57A508D2FC05f92E0A28c0E316F430Dd"
 
       explorer: "https://bc4p.nowum.fh-aachen.de/explorer/api"
       verify: False
+    bc4p-fork:
+      faucet: 
+          address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
+          faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
+      eurs:
+        address: "0xCEB386Cc0C703de5e93F22Db7Ad65f71d0458dE0"
+      energy:
+        address: "0xFaAc09e59D4e1f67e55b88C91c5fE6598E94EC2B"
+      soulbound:
+        address: "0x9934a19e57A508D2FC05f92E0A28c0E316F430Dd"
+
+      explorer: "https://bc4p.nowum.fh-aachen.de/explorer/api"
+
 
     
 
