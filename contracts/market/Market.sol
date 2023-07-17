@@ -255,5 +255,11 @@ contract Market is Node, KeeperCompatible{
         return address(this);
     }
 
+    function setFee(uint _fee) public {
+        fee = _fee;
+    }
+
+    
+
  
 }

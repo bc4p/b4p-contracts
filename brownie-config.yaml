@@ -49,7 +49,7 @@ networks:
       chainid: "123321"
       host: "https://bc4p.nowum.fh-aachen.de/blockchain"
       faucet: 
-        address: "0xf9e08A6aEB0D1B1440344928A3Ecb8442e7C06eB"
+        address: "0xe6D85B12C03b059F92e6020D4f815363AA0c34fA"
         faucet_pk: "0x40c11fab29d98cb04f4171c00857f4c62933ee34f76077159ce57395b107ae23"
       eurs:
         address: "0xCEB386Cc0C703de5e93F22Db7Ad65f71d0458dE0"
