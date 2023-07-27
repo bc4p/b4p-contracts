@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 contract EursMock is ERC20 {
     address private owner;
     constructor() ERC20("Euro", "EUR") {
-        _mint(msg.sender, 10000 * 10**uint(decimals()));
+        _mint(msg.sender, 1000000000 * 10**uint(decimals()));
         owner = msg.sender;
     }
 

@@ -4,7 +4,7 @@ pragma solidity ^0.8.12;
 import "./Asset.sol";
 contract ProducingAsset is Asset{
   
-    constructor(address market2Address, address marketRegistryAddress) Asset(msg.sender, address(0), market2Address, marketRegistryAddress) {
+    constructor(address market2Address, address marketRegistryAddress, address soulboundTokenAddress) Asset(msg.sender, address(0), market2Address, marketRegistryAddress, soulboundTokenAddress) {
         token = EnergyToken(market2.energyToken());
     }
 
@@ -24,9 +24,11 @@ contract ProducingAsset is Asset{
         for(uint i=0; i<markets.length; i++){
             stableCoin.approve(markets[i], 1000000000000000000000);
         }
-        OfferOrBid memory offer = OfferOrBid(block.timestamp, price, amount, address(this), address(this), false, id);
+
+        OfferOrBid memory offer = OfferOrBid(block.timestamp, price, amount, owner, owner, false, id);
         token.produce(offer._address, offer.amount);
         forward(offer, 0);
+
     }
    
 }

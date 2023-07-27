@@ -8,6 +8,10 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract SoulBoundToken is ERC721, Ownable {
     mapping (address => bool) public owners;
     mapping (address => string) public image;
+//asset, trading, visualizzazione del wallet.
+//asset
+    mapping (address => address[]) public assets;
+    mapping (address => uint) public numAssets;
     mapping (address => bool) public requestStatus;
     mapping (address => bool) public openVerifications;
 
@@ -51,6 +55,12 @@ contract SoulBoundToken is ERC721, Ownable {
     function updateMetadata(uint256 tokenId, string memory _image) private {
         require(ownerOf(tokenId) == msg.sender, "Only the token owner can change metadata");
         image[msg.sender] = _image;
+    }
+
+    function addAddress(address newAddress) public {
+        require(owners[tx.origin], "Only the token owner can change metadata");
+        assets[tx.origin].push(newAddress);
+        numAssets[tx.origin] = numAssets[tx.origin] + 1;
     }
 
     function burn(uint256 tokenId) external {
