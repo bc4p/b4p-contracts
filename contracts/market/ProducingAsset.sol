@@ -13,7 +13,7 @@ contract ProducingAsset is Asset{
     }
 
     function acceptBid( uint price, uint amount, string memory bidId) external {
-        OfferOrBid memory offer = OfferOrBid(block.timestamp, price, amount, address(this), address(this), false, "");
+        OfferOrBid memory offer = OfferOrBid(block.timestamp, price, amount, owner, owner, false, "");
         token.produce(offer._address, offer.amount);
         market2.acceptBid(bidId,offer);
     }
